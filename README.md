@@ -23,14 +23,19 @@ pip install ply
 ## Usage
 
 Clone the repository and navigate to the project directory:
-git clone https://github.com/yourusername/SyntaxMaster.git  
-cd SyntaxMaster  
+```bash
+git clone https://github.com/Nagathejas-M-S/SyntaxMaster-A-PLY-Based-Context-Free-Grammar-Validator-for-C-Constructs.git  
+cd SyntaxMaster
+``` 
 Run the Python script to validate C++ code snippets:  
-python syntax_validator.py  
+```bash
+python syntax_validator.py
+```
 You can modify the data variable in the script with your own C++ code snippet for validation.
 
 ## Example
 Here's an example of how to use SyntaxMaster:
+```bash
 data = """
 for (int i=0; i < 10; i++) {
     if(i==2){
@@ -41,6 +46,6 @@ for (int i=0; i < 10; i++) {
     }
 }
 """
+```
 
-result = parser.parse(data)
 If the syntax is valid, you'll receive a "Parsed successfully" message.
