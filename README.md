@@ -16,7 +16,9 @@ SyntaxMaster is a Python-based tool designed to validate the syntax of C++ progr
 Ensure you have Python installed (preferably Python 3.6 or higher). You'll also need to install the PLY library:
 
 ```bash
-pip install ply  
+pip install ply
+```
+
 
 ## Usage
 
