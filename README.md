@@ -1,4 +1,4 @@
-# SyntaxMaster-A-PLY-Based-Context-Free-Grammar-Validator-for-C-Constructs
+# SyntaxMaster-A-PLY-Based-Context-Free-Grammar-Validator-for-Cpp-Constructs
 
 SyntaxMaster is a Python-based tool designed to validate the syntax of C++ programming constructs using Context-Free Grammar (CFG) and the PLY (Python Lex-Yacc) toolkit. This project aims to assist developers and students in checking the correctness of fundamental C++ code structures.
 
