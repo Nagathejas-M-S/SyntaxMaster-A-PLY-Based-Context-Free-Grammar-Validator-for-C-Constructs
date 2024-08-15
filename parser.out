@@ -1,0 +1,2154 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> initial
+Rule 1     statement1 -> for_loop1
+Rule 2     statement1 -> ifstatement4
+Rule 3     statement1 -> other_statement1
+Rule 4     statement1 -> empty
+Rule 5     for_loop1 -> FOR LPAREN assignment1 SEMICOLON condition1 SEMICOLON update1 RPAREN compound_statement1
+Rule 6     assignment1 -> INT ID OPERATOR expression1
+Rule 7     assignment1 -> ID OPERATOR expression1
+Rule 8     condition1 -> expression1
+Rule 9     update1 -> ID OPERATOR OPERATOR
+Rule 10    update1 -> ID OPERATOR expression1
+Rule 11    expression1 -> expression1 OPERATOR expression1
+Rule 12    expression1 -> expression1 OPERATOR OPERATOR expression1
+Rule 13    expression1 -> LPAREN expression1 RPAREN
+Rule 14    expression1 -> ID
+Rule 15    expression1 -> NUMBER
+Rule 16    compound_statement1 -> LBRACE statements1 RBRACE
+Rule 17    statements1 -> statement1
+Rule 18    statements1 -> statements1 statement1
+Rule 19    other_statement1 -> ID OPERATOR expression1 SEMICOLON
+Rule 20    function2 -> type2 ID LPAREN params2 RPAREN LBRACE statements2 RBRACE function2
+Rule 21    function2 -> type2 ID LPAREN RPAREN LBRACE statements2 RBRACE function2
+Rule 22    function2 -> empty
+Rule 23    params2 -> param2
+Rule 24    params2 -> params2 COMMA param2
+Rule 25    param2 -> type2 ID
+Rule 26    type2 -> INT
+Rule 27    type2 -> FLOAT
+Rule 28    statements2 -> statement2
+Rule 29    statements2 -> statements2 statement2
+Rule 30    statement2 -> declaration2
+Rule 31    statement2 -> expression2 SEMICOLON
+Rule 32    statement2 -> RETURN expression2 SEMICOLON
+Rule 33    declaration2 -> type2 ID SEMICOLON
+Rule 34    declaration2 -> type2 ID COMMA ID SEMICOLON
+Rule 35    expression2 -> term2
+Rule 36    expression2 -> expression2 OPERATOR term2
+Rule 37    term2 -> factor2
+Rule 38    term2 -> term2 OPERATOR factor2
+Rule 39    factor2 -> NUMBER
+Rule 40    factor2 -> ID
+Rule 41    factor2 -> LPAREN expression2 RPAREN
+Rule 42    ifstatement4 -> IF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4
+Rule 43    ifstatement4 -> IF expr4 LBRACE statements4 RBRACE
+Rule 44    ifelse4 -> ELSEIF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4
+Rule 45    ifelse4 -> ELSE LBRACE statements4 RBRACE
+Rule 46    ifelse4 -> empty
+Rule 47    statements4 -> statements4 statements4 SEMICOLON
+Rule 48    statements4 -> expr4
+Rule 49    statements4 -> empty
+Rule 50    expr4 -> expr4 OPERATOR OPERATOR expr4
+Rule 51    expr4 -> expr4 OPERATOR expr4
+Rule 52    expr4 -> ID
+Rule 53    expr4 -> NUMBER
+Rule 54    switch_statement5 -> SWITCH use_ornot5 LBRACE case_list5 DEFAULT COLON statement_list5 RBRACE
+Rule 55    use_ornot5 -> LPAREN ID RPAREN
+Rule 56    use_ornot5 -> ID
+Rule 57    case_list5 -> case_entry5 case_list5
+Rule 58    case_list5 -> empty
+Rule 59    case_entry5 -> CASE NUMBER COLON statement_list5
+Rule 60    statement_list5 -> statement5 SEMICOLON statement_list5
+Rule 61    statement_list5 -> empty
+Rule 62    statement5 -> ID
+Rule 63    statement5 -> BREAK
+Rule 64    empty -> <empty>
+Rule 65    initial -> statement1
+Rule 66    initial -> function2
+Rule 67    initial -> ifstatement4
+Rule 68    initial -> switch_statement5
+
+Terminals, with rules where they appear
+
+BREAK                : 63
+CASE                 : 59
+COLON                : 54 59
+COMMA                : 24 34
+DEFAULT              : 54
+ELSE                 : 45
+ELSEIF               : 44
+FLOAT                : 27
+FOR                  : 5
+ID                   : 6 7 9 10 14 19 20 21 25 33 34 34 40 52 55 56 62
+IF                   : 42 43
+INT                  : 6 26
+LBRACE               : 16 20 21 42 43 44 45 54
+LPAREN               : 5 13 20 21 41 42 44 55
+NUMBER               : 15 39 53 59
+OPERATOR             : 6 7 9 9 10 11 12 12 19 36 38 50 50 51
+RBRACE               : 16 20 21 42 43 44 45 54
+RETURN               : 32
+RPAREN               : 5 13 20 21 41 42 44 55
+SEMICOLON            : 5 5 19 31 32 33 34 47 60
+SWITCH               : 54
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment1          : 5
+case_entry5          : 57
+case_list5           : 54 57
+compound_statement1  : 5
+condition1           : 5
+declaration2         : 30
+empty                : 4 22 46 49 58 61
+expr4                : 42 43 44 48 50 50 51 51
+expression1          : 6 7 8 10 11 11 12 12 13 19
+expression2          : 31 32 36 41
+factor2              : 37 38
+for_loop1            : 1
+function2            : 20 21 66
+ifelse4              : 42 44
+ifstatement4         : 2 67
+initial              : 0
+other_statement1     : 3
+param2               : 23 24
+params2              : 20 24
+statement1           : 17 18 65
+statement2           : 28 29
+statement5           : 60
+statement_list5      : 54 59 60
+statements1          : 16 18
+statements2          : 20 21 29
+statements4          : 42 43 44 45 47 47
+switch_statement5    : 68
+term2                : 35 36 38
+type2                : 20 21 25 33 34
+update1              : 5
+use_ornot5           : 54
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . initial
+    (65) initial -> . statement1
+    (66) initial -> . function2
+    (67) initial -> . ifstatement4
+    (68) initial -> . switch_statement5
+    (1) statement1 -> . for_loop1
+    (2) statement1 -> . ifstatement4
+    (3) statement1 -> . other_statement1
+    (4) statement1 -> . empty
+    (20) function2 -> . type2 ID LPAREN params2 RPAREN LBRACE statements2 RBRACE function2
+    (21) function2 -> . type2 ID LPAREN RPAREN LBRACE statements2 RBRACE function2
+    (22) function2 -> . empty
+    (42) ifstatement4 -> . IF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4
+    (43) ifstatement4 -> . IF expr4 LBRACE statements4 RBRACE
+    (54) switch_statement5 -> . SWITCH use_ornot5 LBRACE case_list5 DEFAULT COLON statement_list5 RBRACE
+    (5) for_loop1 -> . FOR LPAREN assignment1 SEMICOLON condition1 SEMICOLON update1 RPAREN compound_statement1
+    (19) other_statement1 -> . ID OPERATOR expression1 SEMICOLON
+    (64) empty -> .
+    (26) type2 -> . INT
+    (27) type2 -> . FLOAT
+
+    IF              shift and go to state 11
+    SWITCH          shift and go to state 12
+    FOR             shift and go to state 13
+    ID              shift and go to state 10
+    $end            reduce using rule 64 (empty -> .)
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+
+    initial                        shift and go to state 1
+    statement1                     shift and go to state 2
+    function2                      shift and go to state 3
+    ifstatement4                   shift and go to state 4
+    switch_statement5              shift and go to state 5
+    for_loop1                      shift and go to state 6
+    other_statement1               shift and go to state 7
+    empty                          shift and go to state 8
+    type2                          shift and go to state 9
+
+state 1
+
+    (0) S' -> initial .
+
+
+
+state 2
+
+    (65) initial -> statement1 .
+
+    $end            reduce using rule 65 (initial -> statement1 .)
+
+
+state 3
+
+    (66) initial -> function2 .
+
+    $end            reduce using rule 66 (initial -> function2 .)
+
+
+state 4
+
+    (67) initial -> ifstatement4 .
+    (2) statement1 -> ifstatement4 .
+
+  ! reduce/reduce conflict for $end resolved using rule 2 (statement1 -> ifstatement4 .)
+    $end            reduce using rule 2 (statement1 -> ifstatement4 .)
+
+  ! $end            [ reduce using rule 67 (initial -> ifstatement4 .) ]
+
+
+state 5
+
+    (68) initial -> switch_statement5 .
+
+    $end            reduce using rule 68 (initial -> switch_statement5 .)
+
+
+state 6
+
+    (1) statement1 -> for_loop1 .
+
+    $end            reduce using rule 1 (statement1 -> for_loop1 .)
+    RBRACE          reduce using rule 1 (statement1 -> for_loop1 .)
+    FOR             reduce using rule 1 (statement1 -> for_loop1 .)
+    IF              reduce using rule 1 (statement1 -> for_loop1 .)
+    ID              reduce using rule 1 (statement1 -> for_loop1 .)
+
+
+state 7
+
+    (3) statement1 -> other_statement1 .
+
+    $end            reduce using rule 3 (statement1 -> other_statement1 .)
+    RBRACE          reduce using rule 3 (statement1 -> other_statement1 .)
+    FOR             reduce using rule 3 (statement1 -> other_statement1 .)
+    IF              reduce using rule 3 (statement1 -> other_statement1 .)
+    ID              reduce using rule 3 (statement1 -> other_statement1 .)
+
+
+state 8
+
+    (4) statement1 -> empty .
+    (22) function2 -> empty .
+
+  ! reduce/reduce conflict for $end resolved using rule 4 (statement1 -> empty .)
+    $end            reduce using rule 4 (statement1 -> empty .)
+
+  ! $end            [ reduce using rule 22 (function2 -> empty .) ]
+
+
+state 9
+
+    (20) function2 -> type2 . ID LPAREN params2 RPAREN LBRACE statements2 RBRACE function2
+    (21) function2 -> type2 . ID LPAREN RPAREN LBRACE statements2 RBRACE function2
+
+    ID              shift and go to state 16
+
+
+state 10
+
+    (19) other_statement1 -> ID . OPERATOR expression1 SEMICOLON
+
+    OPERATOR        shift and go to state 17
+
+
+state 11
+
+    (42) ifstatement4 -> IF . LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4
+    (43) ifstatement4 -> IF . expr4 LBRACE statements4 RBRACE
+    (50) expr4 -> . expr4 OPERATOR OPERATOR expr4
+    (51) expr4 -> . expr4 OPERATOR expr4
+    (52) expr4 -> . ID
+    (53) expr4 -> . NUMBER
+
+    LPAREN          shift and go to state 18
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+
+    expr4                          shift and go to state 19
+
+state 12
+
+    (54) switch_statement5 -> SWITCH . use_ornot5 LBRACE case_list5 DEFAULT COLON statement_list5 RBRACE
+    (55) use_ornot5 -> . LPAREN ID RPAREN
+    (56) use_ornot5 -> . ID
+
+    LPAREN          shift and go to state 23
+    ID              shift and go to state 24
+
+    use_ornot5                     shift and go to state 22
+
+state 13
+
+    (5) for_loop1 -> FOR . LPAREN assignment1 SEMICOLON condition1 SEMICOLON update1 RPAREN compound_statement1
+
+    LPAREN          shift and go to state 25
+
+
+state 14
+
+    (26) type2 -> INT .
+
+    ID              reduce using rule 26 (type2 -> INT .)
+
+
+state 15
+
+    (27) type2 -> FLOAT .
+
+    ID              reduce using rule 27 (type2 -> FLOAT .)
+
+
+state 16
+
+    (20) function2 -> type2 ID . LPAREN params2 RPAREN LBRACE statements2 RBRACE function2
+    (21) function2 -> type2 ID . LPAREN RPAREN LBRACE statements2 RBRACE function2
+
+    LPAREN          shift and go to state 26
+
+
+state 17
+
+    (19) other_statement1 -> ID OPERATOR . expression1 SEMICOLON
+    (11) expression1 -> . expression1 OPERATOR expression1
+    (12) expression1 -> . expression1 OPERATOR OPERATOR expression1
+    (13) expression1 -> . LPAREN expression1 RPAREN
+    (14) expression1 -> . ID
+    (15) expression1 -> . NUMBER
+
+    LPAREN          shift and go to state 29
+    ID              shift and go to state 27
+    NUMBER          shift and go to state 30
+
+    expression1                    shift and go to state 28
+
+state 18
+
+    (42) ifstatement4 -> IF LPAREN . expr4 RPAREN LBRACE statements4 RBRACE ifelse4
+    (50) expr4 -> . expr4 OPERATOR OPERATOR expr4
+    (51) expr4 -> . expr4 OPERATOR expr4
+    (52) expr4 -> . ID
+    (53) expr4 -> . NUMBER
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+
+    expr4                          shift and go to state 31
+
+state 19
+
+    (43) ifstatement4 -> IF expr4 . LBRACE statements4 RBRACE
+    (50) expr4 -> expr4 . OPERATOR OPERATOR expr4
+    (51) expr4 -> expr4 . OPERATOR expr4
+
+    LBRACE          shift and go to state 32
+    OPERATOR        shift and go to state 33
+
+
+state 20
+
+    (52) expr4 -> ID .
+
+    LBRACE          reduce using rule 52 (expr4 -> ID .)
+    OPERATOR        reduce using rule 52 (expr4 -> ID .)
+    RPAREN          reduce using rule 52 (expr4 -> ID .)
+    RBRACE          reduce using rule 52 (expr4 -> ID .)
+    ID              reduce using rule 52 (expr4 -> ID .)
+    NUMBER          reduce using rule 52 (expr4 -> ID .)
+    SEMICOLON       reduce using rule 52 (expr4 -> ID .)
+
+
+state 21
+
+    (53) expr4 -> NUMBER .
+
+    LBRACE          reduce using rule 53 (expr4 -> NUMBER .)
+    OPERATOR        reduce using rule 53 (expr4 -> NUMBER .)
+    RPAREN          reduce using rule 53 (expr4 -> NUMBER .)
+    RBRACE          reduce using rule 53 (expr4 -> NUMBER .)
+    ID              reduce using rule 53 (expr4 -> NUMBER .)
+    NUMBER          reduce using rule 53 (expr4 -> NUMBER .)
+    SEMICOLON       reduce using rule 53 (expr4 -> NUMBER .)
+
+
+state 22
+
+    (54) switch_statement5 -> SWITCH use_ornot5 . LBRACE case_list5 DEFAULT COLON statement_list5 RBRACE
+
+    LBRACE          shift and go to state 34
+
+
+state 23
+
+    (55) use_ornot5 -> LPAREN . ID RPAREN
+
+    ID              shift and go to state 35
+
+
+state 24
+
+    (56) use_ornot5 -> ID .
+
+    LBRACE          reduce using rule 56 (use_ornot5 -> ID .)
+
+
+state 25
+
+    (5) for_loop1 -> FOR LPAREN . assignment1 SEMICOLON condition1 SEMICOLON update1 RPAREN compound_statement1
+    (6) assignment1 -> . INT ID OPERATOR expression1
+    (7) assignment1 -> . ID OPERATOR expression1
+
+    INT             shift and go to state 37
+    ID              shift and go to state 38
+
+    assignment1                    shift and go to state 36
+
+state 26
+
+    (20) function2 -> type2 ID LPAREN . params2 RPAREN LBRACE statements2 RBRACE function2
+    (21) function2 -> type2 ID LPAREN . RPAREN LBRACE statements2 RBRACE function2
+    (23) params2 -> . param2
+    (24) params2 -> . params2 COMMA param2
+    (25) param2 -> . type2 ID
+    (26) type2 -> . INT
+    (27) type2 -> . FLOAT
+
+    RPAREN          shift and go to state 41
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+
+    type2                          shift and go to state 39
+    params2                        shift and go to state 40
+    param2                         shift and go to state 42
+
+state 27
+
+    (14) expression1 -> ID .
+
+    SEMICOLON       reduce using rule 14 (expression1 -> ID .)
+    OPERATOR        reduce using rule 14 (expression1 -> ID .)
+    RPAREN          reduce using rule 14 (expression1 -> ID .)
+
+
+state 28
+
+    (19) other_statement1 -> ID OPERATOR expression1 . SEMICOLON
+    (11) expression1 -> expression1 . OPERATOR expression1
+    (12) expression1 -> expression1 . OPERATOR OPERATOR expression1
+
+    SEMICOLON       shift and go to state 44
+    OPERATOR        shift and go to state 43
+
+
+state 29
+
+    (13) expression1 -> LPAREN . expression1 RPAREN
+    (11) expression1 -> . expression1 OPERATOR expression1
+    (12) expression1 -> . expression1 OPERATOR OPERATOR expression1
+    (13) expression1 -> . LPAREN expression1 RPAREN
+    (14) expression1 -> . ID
+    (15) expression1 -> . NUMBER
+
+    LPAREN          shift and go to state 29
+    ID              shift and go to state 27
+    NUMBER          shift and go to state 30
+
+    expression1                    shift and go to state 45
+
+state 30
+
+    (15) expression1 -> NUMBER .
+
+    SEMICOLON       reduce using rule 15 (expression1 -> NUMBER .)
+    OPERATOR        reduce using rule 15 (expression1 -> NUMBER .)
+    RPAREN          reduce using rule 15 (expression1 -> NUMBER .)
+
+
+state 31
+
+    (42) ifstatement4 -> IF LPAREN expr4 . RPAREN LBRACE statements4 RBRACE ifelse4
+    (50) expr4 -> expr4 . OPERATOR OPERATOR expr4
+    (51) expr4 -> expr4 . OPERATOR expr4
+
+    RPAREN          shift and go to state 46
+    OPERATOR        shift and go to state 33
+
+
+state 32
+
+    (43) ifstatement4 -> IF expr4 LBRACE . statements4 RBRACE
+    (47) statements4 -> . statements4 statements4 SEMICOLON
+    (48) statements4 -> . expr4
+    (49) statements4 -> . empty
+    (50) expr4 -> . expr4 OPERATOR OPERATOR expr4
+    (51) expr4 -> . expr4 OPERATOR expr4
+    (52) expr4 -> . ID
+    (53) expr4 -> . NUMBER
+    (64) empty -> .
+
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    RBRACE          reduce using rule 64 (empty -> .)
+    SEMICOLON       reduce using rule 64 (empty -> .)
+
+  ! ID              [ reduce using rule 64 (empty -> .) ]
+  ! NUMBER          [ reduce using rule 64 (empty -> .) ]
+
+    expr4                          shift and go to state 47
+    statements4                    shift and go to state 48
+    empty                          shift and go to state 49
+
+state 33
+
+    (50) expr4 -> expr4 OPERATOR . OPERATOR expr4
+    (51) expr4 -> expr4 OPERATOR . expr4
+    (50) expr4 -> . expr4 OPERATOR OPERATOR expr4
+    (51) expr4 -> . expr4 OPERATOR expr4
+    (52) expr4 -> . ID
+    (53) expr4 -> . NUMBER
+
+    OPERATOR        shift and go to state 51
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+
+    expr4                          shift and go to state 50
+
+state 34
+
+    (54) switch_statement5 -> SWITCH use_ornot5 LBRACE . case_list5 DEFAULT COLON statement_list5 RBRACE
+    (57) case_list5 -> . case_entry5 case_list5
+    (58) case_list5 -> . empty
+    (59) case_entry5 -> . CASE NUMBER COLON statement_list5
+    (64) empty -> .
+
+    CASE            shift and go to state 55
+    DEFAULT         reduce using rule 64 (empty -> .)
+
+    case_list5                     shift and go to state 52
+    case_entry5                    shift and go to state 53
+    empty                          shift and go to state 54
+
+state 35
+
+    (55) use_ornot5 -> LPAREN ID . RPAREN
+
+    RPAREN          shift and go to state 56
+
+
+state 36
+
+    (5) for_loop1 -> FOR LPAREN assignment1 . SEMICOLON condition1 SEMICOLON update1 RPAREN compound_statement1
+
+    SEMICOLON       shift and go to state 57
+
+
+state 37
+
+    (6) assignment1 -> INT . ID OPERATOR expression1
+
+    ID              shift and go to state 58
+
+
+state 38
+
+    (7) assignment1 -> ID . OPERATOR expression1
+
+    OPERATOR        shift and go to state 59
+
+
+state 39
+
+    (25) param2 -> type2 . ID
+
+    ID              shift and go to state 60
+
+
+state 40
+
+    (20) function2 -> type2 ID LPAREN params2 . RPAREN LBRACE statements2 RBRACE function2
+    (24) params2 -> params2 . COMMA param2
+
+    RPAREN          shift and go to state 61
+    COMMA           shift and go to state 62
+
+
+state 41
+
+    (21) function2 -> type2 ID LPAREN RPAREN . LBRACE statements2 RBRACE function2
+
+    LBRACE          shift and go to state 63
+
+
+state 42
+
+    (23) params2 -> param2 .
+
+    RPAREN          reduce using rule 23 (params2 -> param2 .)
+    COMMA           reduce using rule 23 (params2 -> param2 .)
+
+
+state 43
+
+    (11) expression1 -> expression1 OPERATOR . expression1
+    (12) expression1 -> expression1 OPERATOR . OPERATOR expression1
+    (11) expression1 -> . expression1 OPERATOR expression1
+    (12) expression1 -> . expression1 OPERATOR OPERATOR expression1
+    (13) expression1 -> . LPAREN expression1 RPAREN
+    (14) expression1 -> . ID
+    (15) expression1 -> . NUMBER
+
+    OPERATOR        shift and go to state 65
+    LPAREN          shift and go to state 29
+    ID              shift and go to state 27
+    NUMBER          shift and go to state 30
+
+    expression1                    shift and go to state 64
+
+state 44
+
+    (19) other_statement1 -> ID OPERATOR expression1 SEMICOLON .
+
+    $end            reduce using rule 19 (other_statement1 -> ID OPERATOR expression1 SEMICOLON .)
+    RBRACE          reduce using rule 19 (other_statement1 -> ID OPERATOR expression1 SEMICOLON .)
+    FOR             reduce using rule 19 (other_statement1 -> ID OPERATOR expression1 SEMICOLON .)
+    IF              reduce using rule 19 (other_statement1 -> ID OPERATOR expression1 SEMICOLON .)
+    ID              reduce using rule 19 (other_statement1 -> ID OPERATOR expression1 SEMICOLON .)
+
+
+state 45
+
+    (13) expression1 -> LPAREN expression1 . RPAREN
+    (11) expression1 -> expression1 . OPERATOR expression1
+    (12) expression1 -> expression1 . OPERATOR OPERATOR expression1
+
+    RPAREN          shift and go to state 66
+    OPERATOR        shift and go to state 43
+
+
+state 46
+
+    (42) ifstatement4 -> IF LPAREN expr4 RPAREN . LBRACE statements4 RBRACE ifelse4
+
+    LBRACE          shift and go to state 67
+
+
+state 47
+
+    (48) statements4 -> expr4 .
+    (50) expr4 -> expr4 . OPERATOR OPERATOR expr4
+    (51) expr4 -> expr4 . OPERATOR expr4
+
+    RBRACE          reduce using rule 48 (statements4 -> expr4 .)
+    ID              reduce using rule 48 (statements4 -> expr4 .)
+    NUMBER          reduce using rule 48 (statements4 -> expr4 .)
+    SEMICOLON       reduce using rule 48 (statements4 -> expr4 .)
+    OPERATOR        shift and go to state 33
+
+
+state 48
+
+    (43) ifstatement4 -> IF expr4 LBRACE statements4 . RBRACE
+    (47) statements4 -> statements4 . statements4 SEMICOLON
+    (47) statements4 -> . statements4 statements4 SEMICOLON
+    (48) statements4 -> . expr4
+    (49) statements4 -> . empty
+    (50) expr4 -> . expr4 OPERATOR OPERATOR expr4
+    (51) expr4 -> . expr4 OPERATOR expr4
+    (52) expr4 -> . ID
+    (53) expr4 -> . NUMBER
+    (64) empty -> .
+
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    RBRACE          shift and go to state 69
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    SEMICOLON       reduce using rule 64 (empty -> .)
+
+  ! ID              [ reduce using rule 64 (empty -> .) ]
+  ! NUMBER          [ reduce using rule 64 (empty -> .) ]
+
+    expr4                          shift and go to state 47
+    statements4                    shift and go to state 68
+    empty                          shift and go to state 49
+
+state 49
+
+    (49) statements4 -> empty .
+
+    RBRACE          reduce using rule 49 (statements4 -> empty .)
+    ID              reduce using rule 49 (statements4 -> empty .)
+    NUMBER          reduce using rule 49 (statements4 -> empty .)
+    SEMICOLON       reduce using rule 49 (statements4 -> empty .)
+
+
+state 50
+
+    (51) expr4 -> expr4 OPERATOR expr4 .
+    (50) expr4 -> expr4 . OPERATOR OPERATOR expr4
+    (51) expr4 -> expr4 . OPERATOR expr4
+
+  ! shift/reduce conflict for OPERATOR resolved as shift
+    LBRACE          reduce using rule 51 (expr4 -> expr4 OPERATOR expr4 .)
+    RPAREN          reduce using rule 51 (expr4 -> expr4 OPERATOR expr4 .)
+    RBRACE          reduce using rule 51 (expr4 -> expr4 OPERATOR expr4 .)
+    ID              reduce using rule 51 (expr4 -> expr4 OPERATOR expr4 .)
+    NUMBER          reduce using rule 51 (expr4 -> expr4 OPERATOR expr4 .)
+    SEMICOLON       reduce using rule 51 (expr4 -> expr4 OPERATOR expr4 .)
+    OPERATOR        shift and go to state 33
+
+  ! OPERATOR        [ reduce using rule 51 (expr4 -> expr4 OPERATOR expr4 .) ]
+
+
+state 51
+
+    (50) expr4 -> expr4 OPERATOR OPERATOR . expr4
+    (50) expr4 -> . expr4 OPERATOR OPERATOR expr4
+    (51) expr4 -> . expr4 OPERATOR expr4
+    (52) expr4 -> . ID
+    (53) expr4 -> . NUMBER
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+
+    expr4                          shift and go to state 70
+
+state 52
+
+    (54) switch_statement5 -> SWITCH use_ornot5 LBRACE case_list5 . DEFAULT COLON statement_list5 RBRACE
+
+    DEFAULT         shift and go to state 71
+
+
+state 53
+
+    (57) case_list5 -> case_entry5 . case_list5
+    (57) case_list5 -> . case_entry5 case_list5
+    (58) case_list5 -> . empty
+    (59) case_entry5 -> . CASE NUMBER COLON statement_list5
+    (64) empty -> .
+
+    CASE            shift and go to state 55
+    DEFAULT         reduce using rule 64 (empty -> .)
+
+    case_entry5                    shift and go to state 53
+    case_list5                     shift and go to state 72
+    empty                          shift and go to state 54
+
+state 54
+
+    (58) case_list5 -> empty .
+
+    DEFAULT         reduce using rule 58 (case_list5 -> empty .)
+
+
+state 55
+
+    (59) case_entry5 -> CASE . NUMBER COLON statement_list5
+
+    NUMBER          shift and go to state 73
+
+
+state 56
+
+    (55) use_ornot5 -> LPAREN ID RPAREN .
+
+    LBRACE          reduce using rule 55 (use_ornot5 -> LPAREN ID RPAREN .)
+
+
+state 57
+
+    (5) for_loop1 -> FOR LPAREN assignment1 SEMICOLON . condition1 SEMICOLON update1 RPAREN compound_statement1
+    (8) condition1 -> . expression1
+    (11) expression1 -> . expression1 OPERATOR expression1
+    (12) expression1 -> . expression1 OPERATOR OPERATOR expression1
+    (13) expression1 -> . LPAREN expression1 RPAREN
+    (14) expression1 -> . ID
+    (15) expression1 -> . NUMBER
+
+    LPAREN          shift and go to state 29
+    ID              shift and go to state 27
+    NUMBER          shift and go to state 30
+
+    condition1                     shift and go to state 74
+    expression1                    shift and go to state 75
+
+state 58
+
+    (6) assignment1 -> INT ID . OPERATOR expression1
+
+    OPERATOR        shift and go to state 76
+
+
+state 59
+
+    (7) assignment1 -> ID OPERATOR . expression1
+    (11) expression1 -> . expression1 OPERATOR expression1
+    (12) expression1 -> . expression1 OPERATOR OPERATOR expression1
+    (13) expression1 -> . LPAREN expression1 RPAREN
+    (14) expression1 -> . ID
+    (15) expression1 -> . NUMBER
+
+    LPAREN          shift and go to state 29
+    ID              shift and go to state 27
+    NUMBER          shift and go to state 30
+
+    expression1                    shift and go to state 77
+
+state 60
+
+    (25) param2 -> type2 ID .
+
+    RPAREN          reduce using rule 25 (param2 -> type2 ID .)
+    COMMA           reduce using rule 25 (param2 -> type2 ID .)
+
+
+state 61
+
+    (20) function2 -> type2 ID LPAREN params2 RPAREN . LBRACE statements2 RBRACE function2
+
+    LBRACE          shift and go to state 78
+
+
+state 62
+
+    (24) params2 -> params2 COMMA . param2
+    (25) param2 -> . type2 ID
+    (26) type2 -> . INT
+    (27) type2 -> . FLOAT
+
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+
+    param2                         shift and go to state 79
+    type2                          shift and go to state 39
+
+state 63
+
+    (21) function2 -> type2 ID LPAREN RPAREN LBRACE . statements2 RBRACE function2
+    (28) statements2 -> . statement2
+    (29) statements2 -> . statements2 statement2
+    (30) statement2 -> . declaration2
+    (31) statement2 -> . expression2 SEMICOLON
+    (32) statement2 -> . RETURN expression2 SEMICOLON
+    (33) declaration2 -> . type2 ID SEMICOLON
+    (34) declaration2 -> . type2 ID COMMA ID SEMICOLON
+    (35) expression2 -> . term2
+    (36) expression2 -> . expression2 OPERATOR term2
+    (26) type2 -> . INT
+    (27) type2 -> . FLOAT
+    (37) term2 -> . factor2
+    (38) term2 -> . term2 OPERATOR factor2
+    (39) factor2 -> . NUMBER
+    (40) factor2 -> . ID
+    (41) factor2 -> . LPAREN expression2 RPAREN
+
+    RETURN          shift and go to state 87
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    NUMBER          shift and go to state 90
+    ID              shift and go to state 81
+    LPAREN          shift and go to state 82
+
+    type2                          shift and go to state 80
+    statements2                    shift and go to state 83
+    statement2                     shift and go to state 84
+    declaration2                   shift and go to state 85
+    expression2                    shift and go to state 86
+    term2                          shift and go to state 88
+    factor2                        shift and go to state 89
+
+state 64
+
+    (11) expression1 -> expression1 OPERATOR expression1 .
+    (11) expression1 -> expression1 . OPERATOR expression1
+    (12) expression1 -> expression1 . OPERATOR OPERATOR expression1
+
+  ! shift/reduce conflict for OPERATOR resolved as shift
+    SEMICOLON       reduce using rule 11 (expression1 -> expression1 OPERATOR expression1 .)
+    RPAREN          reduce using rule 11 (expression1 -> expression1 OPERATOR expression1 .)
+    OPERATOR        shift and go to state 43
+
+  ! OPERATOR        [ reduce using rule 11 (expression1 -> expression1 OPERATOR expression1 .) ]
+
+
+state 65
+
+    (12) expression1 -> expression1 OPERATOR OPERATOR . expression1
+    (11) expression1 -> . expression1 OPERATOR expression1
+    (12) expression1 -> . expression1 OPERATOR OPERATOR expression1
+    (13) expression1 -> . LPAREN expression1 RPAREN
+    (14) expression1 -> . ID
+    (15) expression1 -> . NUMBER
+
+    LPAREN          shift and go to state 29
+    ID              shift and go to state 27
+    NUMBER          shift and go to state 30
+
+    expression1                    shift and go to state 91
+
+state 66
+
+    (13) expression1 -> LPAREN expression1 RPAREN .
+
+    SEMICOLON       reduce using rule 13 (expression1 -> LPAREN expression1 RPAREN .)
+    OPERATOR        reduce using rule 13 (expression1 -> LPAREN expression1 RPAREN .)
+    RPAREN          reduce using rule 13 (expression1 -> LPAREN expression1 RPAREN .)
+
+
+state 67
+
+    (42) ifstatement4 -> IF LPAREN expr4 RPAREN LBRACE . statements4 RBRACE ifelse4
+    (47) statements4 -> . statements4 statements4 SEMICOLON
+    (48) statements4 -> . expr4
+    (49) statements4 -> . empty
+    (50) expr4 -> . expr4 OPERATOR OPERATOR expr4
+    (51) expr4 -> . expr4 OPERATOR expr4
+    (52) expr4 -> . ID
+    (53) expr4 -> . NUMBER
+    (64) empty -> .
+
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    RBRACE          reduce using rule 64 (empty -> .)
+    SEMICOLON       reduce using rule 64 (empty -> .)
+
+  ! ID              [ reduce using rule 64 (empty -> .) ]
+  ! NUMBER          [ reduce using rule 64 (empty -> .) ]
+
+    expr4                          shift and go to state 47
+    statements4                    shift and go to state 92
+    empty                          shift and go to state 49
+
+state 68
+
+    (47) statements4 -> statements4 statements4 . SEMICOLON
+    (47) statements4 -> statements4 . statements4 SEMICOLON
+    (47) statements4 -> . statements4 statements4 SEMICOLON
+    (48) statements4 -> . expr4
+    (49) statements4 -> . empty
+    (50) expr4 -> . expr4 OPERATOR OPERATOR expr4
+    (51) expr4 -> . expr4 OPERATOR expr4
+    (52) expr4 -> . ID
+    (53) expr4 -> . NUMBER
+    (64) empty -> .
+
+  ! shift/reduce conflict for SEMICOLON resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    SEMICOLON       shift and go to state 93
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+
+  ! SEMICOLON       [ reduce using rule 64 (empty -> .) ]
+  ! ID              [ reduce using rule 64 (empty -> .) ]
+  ! NUMBER          [ reduce using rule 64 (empty -> .) ]
+
+    statements4                    shift and go to state 68
+    expr4                          shift and go to state 47
+    empty                          shift and go to state 49
+
+state 69
+
+    (43) ifstatement4 -> IF expr4 LBRACE statements4 RBRACE .
+
+    $end            reduce using rule 43 (ifstatement4 -> IF expr4 LBRACE statements4 RBRACE .)
+    RBRACE          reduce using rule 43 (ifstatement4 -> IF expr4 LBRACE statements4 RBRACE .)
+    FOR             reduce using rule 43 (ifstatement4 -> IF expr4 LBRACE statements4 RBRACE .)
+    IF              reduce using rule 43 (ifstatement4 -> IF expr4 LBRACE statements4 RBRACE .)
+    ID              reduce using rule 43 (ifstatement4 -> IF expr4 LBRACE statements4 RBRACE .)
+
+
+state 70
+
+    (50) expr4 -> expr4 OPERATOR OPERATOR expr4 .
+    (50) expr4 -> expr4 . OPERATOR OPERATOR expr4
+    (51) expr4 -> expr4 . OPERATOR expr4
+
+  ! shift/reduce conflict for OPERATOR resolved as shift
+    LBRACE          reduce using rule 50 (expr4 -> expr4 OPERATOR OPERATOR expr4 .)
+    RPAREN          reduce using rule 50 (expr4 -> expr4 OPERATOR OPERATOR expr4 .)
+    RBRACE          reduce using rule 50 (expr4 -> expr4 OPERATOR OPERATOR expr4 .)
+    ID              reduce using rule 50 (expr4 -> expr4 OPERATOR OPERATOR expr4 .)
+    NUMBER          reduce using rule 50 (expr4 -> expr4 OPERATOR OPERATOR expr4 .)
+    SEMICOLON       reduce using rule 50 (expr4 -> expr4 OPERATOR OPERATOR expr4 .)
+    OPERATOR        shift and go to state 33
+
+  ! OPERATOR        [ reduce using rule 50 (expr4 -> expr4 OPERATOR OPERATOR expr4 .) ]
+
+
+state 71
+
+    (54) switch_statement5 -> SWITCH use_ornot5 LBRACE case_list5 DEFAULT . COLON statement_list5 RBRACE
+
+    COLON           shift and go to state 94
+
+
+state 72
+
+    (57) case_list5 -> case_entry5 case_list5 .
+
+    DEFAULT         reduce using rule 57 (case_list5 -> case_entry5 case_list5 .)
+
+
+state 73
+
+    (59) case_entry5 -> CASE NUMBER . COLON statement_list5
+
+    COLON           shift and go to state 95
+
+
+state 74
+
+    (5) for_loop1 -> FOR LPAREN assignment1 SEMICOLON condition1 . SEMICOLON update1 RPAREN compound_statement1
+
+    SEMICOLON       shift and go to state 96
+
+
+state 75
+
+    (8) condition1 -> expression1 .
+    (11) expression1 -> expression1 . OPERATOR expression1
+    (12) expression1 -> expression1 . OPERATOR OPERATOR expression1
+
+    SEMICOLON       reduce using rule 8 (condition1 -> expression1 .)
+    OPERATOR        shift and go to state 43
+
+
+state 76
+
+    (6) assignment1 -> INT ID OPERATOR . expression1
+    (11) expression1 -> . expression1 OPERATOR expression1
+    (12) expression1 -> . expression1 OPERATOR OPERATOR expression1
+    (13) expression1 -> . LPAREN expression1 RPAREN
+    (14) expression1 -> . ID
+    (15) expression1 -> . NUMBER
+
+    LPAREN          shift and go to state 29
+    ID              shift and go to state 27
+    NUMBER          shift and go to state 30
+
+    expression1                    shift and go to state 97
+
+state 77
+
+    (7) assignment1 -> ID OPERATOR expression1 .
+    (11) expression1 -> expression1 . OPERATOR expression1
+    (12) expression1 -> expression1 . OPERATOR OPERATOR expression1
+
+    SEMICOLON       reduce using rule 7 (assignment1 -> ID OPERATOR expression1 .)
+    OPERATOR        shift and go to state 43
+
+
+state 78
+
+    (20) function2 -> type2 ID LPAREN params2 RPAREN LBRACE . statements2 RBRACE function2
+    (28) statements2 -> . statement2
+    (29) statements2 -> . statements2 statement2
+    (30) statement2 -> . declaration2
+    (31) statement2 -> . expression2 SEMICOLON
+    (32) statement2 -> . RETURN expression2 SEMICOLON
+    (33) declaration2 -> . type2 ID SEMICOLON
+    (34) declaration2 -> . type2 ID COMMA ID SEMICOLON
+    (35) expression2 -> . term2
+    (36) expression2 -> . expression2 OPERATOR term2
+    (26) type2 -> . INT
+    (27) type2 -> . FLOAT
+    (37) term2 -> . factor2
+    (38) term2 -> . term2 OPERATOR factor2
+    (39) factor2 -> . NUMBER
+    (40) factor2 -> . ID
+    (41) factor2 -> . LPAREN expression2 RPAREN
+
+    RETURN          shift and go to state 87
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    NUMBER          shift and go to state 90
+    ID              shift and go to state 81
+    LPAREN          shift and go to state 82
+
+    type2                          shift and go to state 80
+    statements2                    shift and go to state 98
+    statement2                     shift and go to state 84
+    declaration2                   shift and go to state 85
+    expression2                    shift and go to state 86
+    term2                          shift and go to state 88
+    factor2                        shift and go to state 89
+
+state 79
+
+    (24) params2 -> params2 COMMA param2 .
+
+    RPAREN          reduce using rule 24 (params2 -> params2 COMMA param2 .)
+    COMMA           reduce using rule 24 (params2 -> params2 COMMA param2 .)
+
+
+state 80
+
+    (33) declaration2 -> type2 . ID SEMICOLON
+    (34) declaration2 -> type2 . ID COMMA ID SEMICOLON
+
+    ID              shift and go to state 99
+
+
+state 81
+
+    (40) factor2 -> ID .
+
+    OPERATOR        reduce using rule 40 (factor2 -> ID .)
+    SEMICOLON       reduce using rule 40 (factor2 -> ID .)
+    RPAREN          reduce using rule 40 (factor2 -> ID .)
+
+
+state 82
+
+    (41) factor2 -> LPAREN . expression2 RPAREN
+    (35) expression2 -> . term2
+    (36) expression2 -> . expression2 OPERATOR term2
+    (37) term2 -> . factor2
+    (38) term2 -> . term2 OPERATOR factor2
+    (39) factor2 -> . NUMBER
+    (40) factor2 -> . ID
+    (41) factor2 -> . LPAREN expression2 RPAREN
+
+    NUMBER          shift and go to state 90
+    ID              shift and go to state 81
+    LPAREN          shift and go to state 82
+
+    expression2                    shift and go to state 100
+    term2                          shift and go to state 88
+    factor2                        shift and go to state 89
+
+state 83
+
+    (21) function2 -> type2 ID LPAREN RPAREN LBRACE statements2 . RBRACE function2
+    (29) statements2 -> statements2 . statement2
+    (30) statement2 -> . declaration2
+    (31) statement2 -> . expression2 SEMICOLON
+    (32) statement2 -> . RETURN expression2 SEMICOLON
+    (33) declaration2 -> . type2 ID SEMICOLON
+    (34) declaration2 -> . type2 ID COMMA ID SEMICOLON
+    (35) expression2 -> . term2
+    (36) expression2 -> . expression2 OPERATOR term2
+    (26) type2 -> . INT
+    (27) type2 -> . FLOAT
+    (37) term2 -> . factor2
+    (38) term2 -> . term2 OPERATOR factor2
+    (39) factor2 -> . NUMBER
+    (40) factor2 -> . ID
+    (41) factor2 -> . LPAREN expression2 RPAREN
+
+    RBRACE          shift and go to state 101
+    RETURN          shift and go to state 87
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    NUMBER          shift and go to state 90
+    ID              shift and go to state 81
+    LPAREN          shift and go to state 82
+
+    type2                          shift and go to state 80
+    statement2                     shift and go to state 102
+    declaration2                   shift and go to state 85
+    expression2                    shift and go to state 86
+    term2                          shift and go to state 88
+    factor2                        shift and go to state 89
+
+state 84
+
+    (28) statements2 -> statement2 .
+
+    RBRACE          reduce using rule 28 (statements2 -> statement2 .)
+    RETURN          reduce using rule 28 (statements2 -> statement2 .)
+    INT             reduce using rule 28 (statements2 -> statement2 .)
+    FLOAT           reduce using rule 28 (statements2 -> statement2 .)
+    NUMBER          reduce using rule 28 (statements2 -> statement2 .)
+    ID              reduce using rule 28 (statements2 -> statement2 .)
+    LPAREN          reduce using rule 28 (statements2 -> statement2 .)
+
+
+state 85
+
+    (30) statement2 -> declaration2 .
+
+    RBRACE          reduce using rule 30 (statement2 -> declaration2 .)
+    RETURN          reduce using rule 30 (statement2 -> declaration2 .)
+    INT             reduce using rule 30 (statement2 -> declaration2 .)
+    FLOAT           reduce using rule 30 (statement2 -> declaration2 .)
+    NUMBER          reduce using rule 30 (statement2 -> declaration2 .)
+    ID              reduce using rule 30 (statement2 -> declaration2 .)
+    LPAREN          reduce using rule 30 (statement2 -> declaration2 .)
+
+
+state 86
+
+    (31) statement2 -> expression2 . SEMICOLON
+    (36) expression2 -> expression2 . OPERATOR term2
+
+    SEMICOLON       shift and go to state 103
+    OPERATOR        shift and go to state 104
+
+
+state 87
+
+    (32) statement2 -> RETURN . expression2 SEMICOLON
+    (35) expression2 -> . term2
+    (36) expression2 -> . expression2 OPERATOR term2
+    (37) term2 -> . factor2
+    (38) term2 -> . term2 OPERATOR factor2
+    (39) factor2 -> . NUMBER
+    (40) factor2 -> . ID
+    (41) factor2 -> . LPAREN expression2 RPAREN
+
+    NUMBER          shift and go to state 90
+    ID              shift and go to state 81
+    LPAREN          shift and go to state 82
+
+    expression2                    shift and go to state 105
+    term2                          shift and go to state 88
+    factor2                        shift and go to state 89
+
+state 88
+
+    (35) expression2 -> term2 .
+    (38) term2 -> term2 . OPERATOR factor2
+
+  ! shift/reduce conflict for OPERATOR resolved as shift
+    SEMICOLON       reduce using rule 35 (expression2 -> term2 .)
+    RPAREN          reduce using rule 35 (expression2 -> term2 .)
+    OPERATOR        shift and go to state 106
+
+  ! OPERATOR        [ reduce using rule 35 (expression2 -> term2 .) ]
+
+
+state 89
+
+    (37) term2 -> factor2 .
+
+    OPERATOR        reduce using rule 37 (term2 -> factor2 .)
+    SEMICOLON       reduce using rule 37 (term2 -> factor2 .)
+    RPAREN          reduce using rule 37 (term2 -> factor2 .)
+
+
+state 90
+
+    (39) factor2 -> NUMBER .
+
+    OPERATOR        reduce using rule 39 (factor2 -> NUMBER .)
+    SEMICOLON       reduce using rule 39 (factor2 -> NUMBER .)
+    RPAREN          reduce using rule 39 (factor2 -> NUMBER .)
+
+
+state 91
+
+    (12) expression1 -> expression1 OPERATOR OPERATOR expression1 .
+    (11) expression1 -> expression1 . OPERATOR expression1
+    (12) expression1 -> expression1 . OPERATOR OPERATOR expression1
+
+  ! shift/reduce conflict for OPERATOR resolved as shift
+    SEMICOLON       reduce using rule 12 (expression1 -> expression1 OPERATOR OPERATOR expression1 .)
+    RPAREN          reduce using rule 12 (expression1 -> expression1 OPERATOR OPERATOR expression1 .)
+    OPERATOR        shift and go to state 43
+
+  ! OPERATOR        [ reduce using rule 12 (expression1 -> expression1 OPERATOR OPERATOR expression1 .) ]
+
+
+state 92
+
+    (42) ifstatement4 -> IF LPAREN expr4 RPAREN LBRACE statements4 . RBRACE ifelse4
+    (47) statements4 -> statements4 . statements4 SEMICOLON
+    (47) statements4 -> . statements4 statements4 SEMICOLON
+    (48) statements4 -> . expr4
+    (49) statements4 -> . empty
+    (50) expr4 -> . expr4 OPERATOR OPERATOR expr4
+    (51) expr4 -> . expr4 OPERATOR expr4
+    (52) expr4 -> . ID
+    (53) expr4 -> . NUMBER
+    (64) empty -> .
+
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    RBRACE          shift and go to state 107
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    SEMICOLON       reduce using rule 64 (empty -> .)
+
+  ! ID              [ reduce using rule 64 (empty -> .) ]
+  ! NUMBER          [ reduce using rule 64 (empty -> .) ]
+
+    expr4                          shift and go to state 47
+    statements4                    shift and go to state 68
+    empty                          shift and go to state 49
+
+state 93
+
+    (47) statements4 -> statements4 statements4 SEMICOLON .
+
+    RBRACE          reduce using rule 47 (statements4 -> statements4 statements4 SEMICOLON .)
+    ID              reduce using rule 47 (statements4 -> statements4 statements4 SEMICOLON .)
+    NUMBER          reduce using rule 47 (statements4 -> statements4 statements4 SEMICOLON .)
+    SEMICOLON       reduce using rule 47 (statements4 -> statements4 statements4 SEMICOLON .)
+
+
+state 94
+
+    (54) switch_statement5 -> SWITCH use_ornot5 LBRACE case_list5 DEFAULT COLON . statement_list5 RBRACE
+    (60) statement_list5 -> . statement5 SEMICOLON statement_list5
+    (61) statement_list5 -> . empty
+    (62) statement5 -> . ID
+    (63) statement5 -> . BREAK
+    (64) empty -> .
+
+    ID              shift and go to state 111
+    BREAK           shift and go to state 112
+    RBRACE          reduce using rule 64 (empty -> .)
+
+    statement_list5                shift and go to state 108
+    statement5                     shift and go to state 109
+    empty                          shift and go to state 110
+
+state 95
+
+    (59) case_entry5 -> CASE NUMBER COLON . statement_list5
+    (60) statement_list5 -> . statement5 SEMICOLON statement_list5
+    (61) statement_list5 -> . empty
+    (62) statement5 -> . ID
+    (63) statement5 -> . BREAK
+    (64) empty -> .
+
+    ID              shift and go to state 111
+    BREAK           shift and go to state 112
+    CASE            reduce using rule 64 (empty -> .)
+    DEFAULT         reduce using rule 64 (empty -> .)
+
+    statement_list5                shift and go to state 113
+    statement5                     shift and go to state 109
+    empty                          shift and go to state 110
+
+state 96
+
+    (5) for_loop1 -> FOR LPAREN assignment1 SEMICOLON condition1 SEMICOLON . update1 RPAREN compound_statement1
+    (9) update1 -> . ID OPERATOR OPERATOR
+    (10) update1 -> . ID OPERATOR expression1
+
+    ID              shift and go to state 115
+
+    update1                        shift and go to state 114
+
+state 97
+
+    (6) assignment1 -> INT ID OPERATOR expression1 .
+    (11) expression1 -> expression1 . OPERATOR expression1
+    (12) expression1 -> expression1 . OPERATOR OPERATOR expression1
+
+    SEMICOLON       reduce using rule 6 (assignment1 -> INT ID OPERATOR expression1 .)
+    OPERATOR        shift and go to state 43
+
+
+state 98
+
+    (20) function2 -> type2 ID LPAREN params2 RPAREN LBRACE statements2 . RBRACE function2
+    (29) statements2 -> statements2 . statement2
+    (30) statement2 -> . declaration2
+    (31) statement2 -> . expression2 SEMICOLON
+    (32) statement2 -> . RETURN expression2 SEMICOLON
+    (33) declaration2 -> . type2 ID SEMICOLON
+    (34) declaration2 -> . type2 ID COMMA ID SEMICOLON
+    (35) expression2 -> . term2
+    (36) expression2 -> . expression2 OPERATOR term2
+    (26) type2 -> . INT
+    (27) type2 -> . FLOAT
+    (37) term2 -> . factor2
+    (38) term2 -> . term2 OPERATOR factor2
+    (39) factor2 -> . NUMBER
+    (40) factor2 -> . ID
+    (41) factor2 -> . LPAREN expression2 RPAREN
+
+    RBRACE          shift and go to state 116
+    RETURN          shift and go to state 87
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    NUMBER          shift and go to state 90
+    ID              shift and go to state 81
+    LPAREN          shift and go to state 82
+
+    type2                          shift and go to state 80
+    statement2                     shift and go to state 102
+    declaration2                   shift and go to state 85
+    expression2                    shift and go to state 86
+    term2                          shift and go to state 88
+    factor2                        shift and go to state 89
+
+state 99
+
+    (33) declaration2 -> type2 ID . SEMICOLON
+    (34) declaration2 -> type2 ID . COMMA ID SEMICOLON
+
+    SEMICOLON       shift and go to state 117
+    COMMA           shift and go to state 118
+
+
+state 100
+
+    (41) factor2 -> LPAREN expression2 . RPAREN
+    (36) expression2 -> expression2 . OPERATOR term2
+
+    RPAREN          shift and go to state 119
+    OPERATOR        shift and go to state 104
+
+
+state 101
+
+    (21) function2 -> type2 ID LPAREN RPAREN LBRACE statements2 RBRACE . function2
+    (20) function2 -> . type2 ID LPAREN params2 RPAREN LBRACE statements2 RBRACE function2
+    (21) function2 -> . type2 ID LPAREN RPAREN LBRACE statements2 RBRACE function2
+    (22) function2 -> . empty
+    (26) type2 -> . INT
+    (27) type2 -> . FLOAT
+    (64) empty -> .
+
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    $end            reduce using rule 64 (empty -> .)
+
+    type2                          shift and go to state 9
+    function2                      shift and go to state 120
+    empty                          shift and go to state 121
+
+state 102
+
+    (29) statements2 -> statements2 statement2 .
+
+    RBRACE          reduce using rule 29 (statements2 -> statements2 statement2 .)
+    RETURN          reduce using rule 29 (statements2 -> statements2 statement2 .)
+    INT             reduce using rule 29 (statements2 -> statements2 statement2 .)
+    FLOAT           reduce using rule 29 (statements2 -> statements2 statement2 .)
+    NUMBER          reduce using rule 29 (statements2 -> statements2 statement2 .)
+    ID              reduce using rule 29 (statements2 -> statements2 statement2 .)
+    LPAREN          reduce using rule 29 (statements2 -> statements2 statement2 .)
+
+
+state 103
+
+    (31) statement2 -> expression2 SEMICOLON .
+
+    RBRACE          reduce using rule 31 (statement2 -> expression2 SEMICOLON .)
+    RETURN          reduce using rule 31 (statement2 -> expression2 SEMICOLON .)
+    INT             reduce using rule 31 (statement2 -> expression2 SEMICOLON .)
+    FLOAT           reduce using rule 31 (statement2 -> expression2 SEMICOLON .)
+    NUMBER          reduce using rule 31 (statement2 -> expression2 SEMICOLON .)
+    ID              reduce using rule 31 (statement2 -> expression2 SEMICOLON .)
+    LPAREN          reduce using rule 31 (statement2 -> expression2 SEMICOLON .)
+
+
+state 104
+
+    (36) expression2 -> expression2 OPERATOR . term2
+    (37) term2 -> . factor2
+    (38) term2 -> . term2 OPERATOR factor2
+    (39) factor2 -> . NUMBER
+    (40) factor2 -> . ID
+    (41) factor2 -> . LPAREN expression2 RPAREN
+
+    NUMBER          shift and go to state 90
+    ID              shift and go to state 81
+    LPAREN          shift and go to state 82
+
+    term2                          shift and go to state 122
+    factor2                        shift and go to state 89
+
+state 105
+
+    (32) statement2 -> RETURN expression2 . SEMICOLON
+    (36) expression2 -> expression2 . OPERATOR term2
+
+    SEMICOLON       shift and go to state 123
+    OPERATOR        shift and go to state 104
+
+
+state 106
+
+    (38) term2 -> term2 OPERATOR . factor2
+    (39) factor2 -> . NUMBER
+    (40) factor2 -> . ID
+    (41) factor2 -> . LPAREN expression2 RPAREN
+
+    NUMBER          shift and go to state 90
+    ID              shift and go to state 81
+    LPAREN          shift and go to state 82
+
+    factor2                        shift and go to state 124
+
+state 107
+
+    (42) ifstatement4 -> IF LPAREN expr4 RPAREN LBRACE statements4 RBRACE . ifelse4
+    (44) ifelse4 -> . ELSEIF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4
+    (45) ifelse4 -> . ELSE LBRACE statements4 RBRACE
+    (46) ifelse4 -> . empty
+    (64) empty -> .
+
+    ELSEIF          shift and go to state 126
+    ELSE            shift and go to state 127
+    $end            reduce using rule 64 (empty -> .)
+    RBRACE          reduce using rule 64 (empty -> .)
+    FOR             reduce using rule 64 (empty -> .)
+    IF              reduce using rule 64 (empty -> .)
+    ID              reduce using rule 64 (empty -> .)
+
+    ifelse4                        shift and go to state 125
+    empty                          shift and go to state 128
+
+state 108
+
+    (54) switch_statement5 -> SWITCH use_ornot5 LBRACE case_list5 DEFAULT COLON statement_list5 . RBRACE
+
+    RBRACE          shift and go to state 129
+
+
+state 109
+
+    (60) statement_list5 -> statement5 . SEMICOLON statement_list5
+
+    SEMICOLON       shift and go to state 130
+
+
+state 110
+
+    (61) statement_list5 -> empty .
+
+    RBRACE          reduce using rule 61 (statement_list5 -> empty .)
+    CASE            reduce using rule 61 (statement_list5 -> empty .)
+    DEFAULT         reduce using rule 61 (statement_list5 -> empty .)
+
+
+state 111
+
+    (62) statement5 -> ID .
+
+    SEMICOLON       reduce using rule 62 (statement5 -> ID .)
+
+
+state 112
+
+    (63) statement5 -> BREAK .
+
+    SEMICOLON       reduce using rule 63 (statement5 -> BREAK .)
+
+
+state 113
+
+    (59) case_entry5 -> CASE NUMBER COLON statement_list5 .
+
+    CASE            reduce using rule 59 (case_entry5 -> CASE NUMBER COLON statement_list5 .)
+    DEFAULT         reduce using rule 59 (case_entry5 -> CASE NUMBER COLON statement_list5 .)
+
+
+state 114
+
+    (5) for_loop1 -> FOR LPAREN assignment1 SEMICOLON condition1 SEMICOLON update1 . RPAREN compound_statement1
+
+    RPAREN          shift and go to state 131
+
+
+state 115
+
+    (9) update1 -> ID . OPERATOR OPERATOR
+    (10) update1 -> ID . OPERATOR expression1
+
+    OPERATOR        shift and go to state 132
+
+
+state 116
+
+    (20) function2 -> type2 ID LPAREN params2 RPAREN LBRACE statements2 RBRACE . function2
+    (20) function2 -> . type2 ID LPAREN params2 RPAREN LBRACE statements2 RBRACE function2
+    (21) function2 -> . type2 ID LPAREN RPAREN LBRACE statements2 RBRACE function2
+    (22) function2 -> . empty
+    (26) type2 -> . INT
+    (27) type2 -> . FLOAT
+    (64) empty -> .
+
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    $end            reduce using rule 64 (empty -> .)
+
+    type2                          shift and go to state 9
+    function2                      shift and go to state 133
+    empty                          shift and go to state 121
+
+state 117
+
+    (33) declaration2 -> type2 ID SEMICOLON .
+
+    RBRACE          reduce using rule 33 (declaration2 -> type2 ID SEMICOLON .)
+    RETURN          reduce using rule 33 (declaration2 -> type2 ID SEMICOLON .)
+    INT             reduce using rule 33 (declaration2 -> type2 ID SEMICOLON .)
+    FLOAT           reduce using rule 33 (declaration2 -> type2 ID SEMICOLON .)
+    NUMBER          reduce using rule 33 (declaration2 -> type2 ID SEMICOLON .)
+    ID              reduce using rule 33 (declaration2 -> type2 ID SEMICOLON .)
+    LPAREN          reduce using rule 33 (declaration2 -> type2 ID SEMICOLON .)
+
+
+state 118
+
+    (34) declaration2 -> type2 ID COMMA . ID SEMICOLON
+
+    ID              shift and go to state 134
+
+
+state 119
+
+    (41) factor2 -> LPAREN expression2 RPAREN .
+
+    OPERATOR        reduce using rule 41 (factor2 -> LPAREN expression2 RPAREN .)
+    SEMICOLON       reduce using rule 41 (factor2 -> LPAREN expression2 RPAREN .)
+    RPAREN          reduce using rule 41 (factor2 -> LPAREN expression2 RPAREN .)
+
+
+state 120
+
+    (21) function2 -> type2 ID LPAREN RPAREN LBRACE statements2 RBRACE function2 .
+
+    $end            reduce using rule 21 (function2 -> type2 ID LPAREN RPAREN LBRACE statements2 RBRACE function2 .)
+
+
+state 121
+
+    (22) function2 -> empty .
+
+    $end            reduce using rule 22 (function2 -> empty .)
+
+
+state 122
+
+    (36) expression2 -> expression2 OPERATOR term2 .
+    (38) term2 -> term2 . OPERATOR factor2
+
+  ! shift/reduce conflict for OPERATOR resolved as shift
+    SEMICOLON       reduce using rule 36 (expression2 -> expression2 OPERATOR term2 .)
+    RPAREN          reduce using rule 36 (expression2 -> expression2 OPERATOR term2 .)
+    OPERATOR        shift and go to state 106
+
+  ! OPERATOR        [ reduce using rule 36 (expression2 -> expression2 OPERATOR term2 .) ]
+
+
+state 123
+
+    (32) statement2 -> RETURN expression2 SEMICOLON .
+
+    RBRACE          reduce using rule 32 (statement2 -> RETURN expression2 SEMICOLON .)
+    RETURN          reduce using rule 32 (statement2 -> RETURN expression2 SEMICOLON .)
+    INT             reduce using rule 32 (statement2 -> RETURN expression2 SEMICOLON .)
+    FLOAT           reduce using rule 32 (statement2 -> RETURN expression2 SEMICOLON .)
+    NUMBER          reduce using rule 32 (statement2 -> RETURN expression2 SEMICOLON .)
+    ID              reduce using rule 32 (statement2 -> RETURN expression2 SEMICOLON .)
+    LPAREN          reduce using rule 32 (statement2 -> RETURN expression2 SEMICOLON .)
+
+
+state 124
+
+    (38) term2 -> term2 OPERATOR factor2 .
+
+    OPERATOR        reduce using rule 38 (term2 -> term2 OPERATOR factor2 .)
+    SEMICOLON       reduce using rule 38 (term2 -> term2 OPERATOR factor2 .)
+    RPAREN          reduce using rule 38 (term2 -> term2 OPERATOR factor2 .)
+
+
+state 125
+
+    (42) ifstatement4 -> IF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4 .
+
+    $end            reduce using rule 42 (ifstatement4 -> IF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4 .)
+    RBRACE          reduce using rule 42 (ifstatement4 -> IF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4 .)
+    FOR             reduce using rule 42 (ifstatement4 -> IF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4 .)
+    IF              reduce using rule 42 (ifstatement4 -> IF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4 .)
+    ID              reduce using rule 42 (ifstatement4 -> IF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4 .)
+
+
+state 126
+
+    (44) ifelse4 -> ELSEIF . LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4
+
+    LPAREN          shift and go to state 135
+
+
+state 127
+
+    (45) ifelse4 -> ELSE . LBRACE statements4 RBRACE
+
+    LBRACE          shift and go to state 136
+
+
+state 128
+
+    (46) ifelse4 -> empty .
+
+    $end            reduce using rule 46 (ifelse4 -> empty .)
+    RBRACE          reduce using rule 46 (ifelse4 -> empty .)
+    FOR             reduce using rule 46 (ifelse4 -> empty .)
+    IF              reduce using rule 46 (ifelse4 -> empty .)
+    ID              reduce using rule 46 (ifelse4 -> empty .)
+
+
+state 129
+
+    (54) switch_statement5 -> SWITCH use_ornot5 LBRACE case_list5 DEFAULT COLON statement_list5 RBRACE .
+
+    $end            reduce using rule 54 (switch_statement5 -> SWITCH use_ornot5 LBRACE case_list5 DEFAULT COLON statement_list5 RBRACE .)
+
+
+state 130
+
+    (60) statement_list5 -> statement5 SEMICOLON . statement_list5
+    (60) statement_list5 -> . statement5 SEMICOLON statement_list5
+    (61) statement_list5 -> . empty
+    (62) statement5 -> . ID
+    (63) statement5 -> . BREAK
+    (64) empty -> .
+
+    ID              shift and go to state 111
+    BREAK           shift and go to state 112
+    RBRACE          reduce using rule 64 (empty -> .)
+    CASE            reduce using rule 64 (empty -> .)
+    DEFAULT         reduce using rule 64 (empty -> .)
+
+    statement5                     shift and go to state 109
+    statement_list5                shift and go to state 137
+    empty                          shift and go to state 110
+
+state 131
+
+    (5) for_loop1 -> FOR LPAREN assignment1 SEMICOLON condition1 SEMICOLON update1 RPAREN . compound_statement1
+    (16) compound_statement1 -> . LBRACE statements1 RBRACE
+
+    LBRACE          shift and go to state 139
+
+    compound_statement1            shift and go to state 138
+
+state 132
+
+    (9) update1 -> ID OPERATOR . OPERATOR
+    (10) update1 -> ID OPERATOR . expression1
+    (11) expression1 -> . expression1 OPERATOR expression1
+    (12) expression1 -> . expression1 OPERATOR OPERATOR expression1
+    (13) expression1 -> . LPAREN expression1 RPAREN
+    (14) expression1 -> . ID
+    (15) expression1 -> . NUMBER
+
+    OPERATOR        shift and go to state 140
+    LPAREN          shift and go to state 29
+    ID              shift and go to state 27
+    NUMBER          shift and go to state 30
+
+    expression1                    shift and go to state 141
+
+state 133
+
+    (20) function2 -> type2 ID LPAREN params2 RPAREN LBRACE statements2 RBRACE function2 .
+
+    $end            reduce using rule 20 (function2 -> type2 ID LPAREN params2 RPAREN LBRACE statements2 RBRACE function2 .)
+
+
+state 134
+
+    (34) declaration2 -> type2 ID COMMA ID . SEMICOLON
+
+    SEMICOLON       shift and go to state 142
+
+
+state 135
+
+    (44) ifelse4 -> ELSEIF LPAREN . expr4 RPAREN LBRACE statements4 RBRACE ifelse4
+    (50) expr4 -> . expr4 OPERATOR OPERATOR expr4
+    (51) expr4 -> . expr4 OPERATOR expr4
+    (52) expr4 -> . ID
+    (53) expr4 -> . NUMBER
+
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+
+    expr4                          shift and go to state 143
+
+state 136
+
+    (45) ifelse4 -> ELSE LBRACE . statements4 RBRACE
+    (47) statements4 -> . statements4 statements4 SEMICOLON
+    (48) statements4 -> . expr4
+    (49) statements4 -> . empty
+    (50) expr4 -> . expr4 OPERATOR OPERATOR expr4
+    (51) expr4 -> . expr4 OPERATOR expr4
+    (52) expr4 -> . ID
+    (53) expr4 -> . NUMBER
+    (64) empty -> .
+
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    RBRACE          reduce using rule 64 (empty -> .)
+    SEMICOLON       reduce using rule 64 (empty -> .)
+
+  ! ID              [ reduce using rule 64 (empty -> .) ]
+  ! NUMBER          [ reduce using rule 64 (empty -> .) ]
+
+    statements4                    shift and go to state 144
+    expr4                          shift and go to state 47
+    empty                          shift and go to state 49
+
+state 137
+
+    (60) statement_list5 -> statement5 SEMICOLON statement_list5 .
+
+    RBRACE          reduce using rule 60 (statement_list5 -> statement5 SEMICOLON statement_list5 .)
+    CASE            reduce using rule 60 (statement_list5 -> statement5 SEMICOLON statement_list5 .)
+    DEFAULT         reduce using rule 60 (statement_list5 -> statement5 SEMICOLON statement_list5 .)
+
+
+state 138
+
+    (5) for_loop1 -> FOR LPAREN assignment1 SEMICOLON condition1 SEMICOLON update1 RPAREN compound_statement1 .
+
+    $end            reduce using rule 5 (for_loop1 -> FOR LPAREN assignment1 SEMICOLON condition1 SEMICOLON update1 RPAREN compound_statement1 .)
+    RBRACE          reduce using rule 5 (for_loop1 -> FOR LPAREN assignment1 SEMICOLON condition1 SEMICOLON update1 RPAREN compound_statement1 .)
+    FOR             reduce using rule 5 (for_loop1 -> FOR LPAREN assignment1 SEMICOLON condition1 SEMICOLON update1 RPAREN compound_statement1 .)
+    IF              reduce using rule 5 (for_loop1 -> FOR LPAREN assignment1 SEMICOLON condition1 SEMICOLON update1 RPAREN compound_statement1 .)
+    ID              reduce using rule 5 (for_loop1 -> FOR LPAREN assignment1 SEMICOLON condition1 SEMICOLON update1 RPAREN compound_statement1 .)
+
+
+state 139
+
+    (16) compound_statement1 -> LBRACE . statements1 RBRACE
+    (17) statements1 -> . statement1
+    (18) statements1 -> . statements1 statement1
+    (1) statement1 -> . for_loop1
+    (2) statement1 -> . ifstatement4
+    (3) statement1 -> . other_statement1
+    (4) statement1 -> . empty
+    (5) for_loop1 -> . FOR LPAREN assignment1 SEMICOLON condition1 SEMICOLON update1 RPAREN compound_statement1
+    (42) ifstatement4 -> . IF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4
+    (43) ifstatement4 -> . IF expr4 LBRACE statements4 RBRACE
+    (19) other_statement1 -> . ID OPERATOR expression1 SEMICOLON
+    (64) empty -> .
+
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+    FOR             shift and go to state 13
+    IF              shift and go to state 11
+    ID              shift and go to state 10
+    RBRACE          reduce using rule 64 (empty -> .)
+
+  ! FOR             [ reduce using rule 64 (empty -> .) ]
+  ! IF              [ reduce using rule 64 (empty -> .) ]
+  ! ID              [ reduce using rule 64 (empty -> .) ]
+
+    statements1                    shift and go to state 145
+    statement1                     shift and go to state 146
+    for_loop1                      shift and go to state 6
+    ifstatement4                   shift and go to state 147
+    other_statement1               shift and go to state 7
+    empty                          shift and go to state 148
+
+state 140
+
+    (9) update1 -> ID OPERATOR OPERATOR .
+
+    RPAREN          reduce using rule 9 (update1 -> ID OPERATOR OPERATOR .)
+
+
+state 141
+
+    (10) update1 -> ID OPERATOR expression1 .
+    (11) expression1 -> expression1 . OPERATOR expression1
+    (12) expression1 -> expression1 . OPERATOR OPERATOR expression1
+
+    RPAREN          reduce using rule 10 (update1 -> ID OPERATOR expression1 .)
+    OPERATOR        shift and go to state 43
+
+
+state 142
+
+    (34) declaration2 -> type2 ID COMMA ID SEMICOLON .
+
+    RBRACE          reduce using rule 34 (declaration2 -> type2 ID COMMA ID SEMICOLON .)
+    RETURN          reduce using rule 34 (declaration2 -> type2 ID COMMA ID SEMICOLON .)
+    INT             reduce using rule 34 (declaration2 -> type2 ID COMMA ID SEMICOLON .)
+    FLOAT           reduce using rule 34 (declaration2 -> type2 ID COMMA ID SEMICOLON .)
+    NUMBER          reduce using rule 34 (declaration2 -> type2 ID COMMA ID SEMICOLON .)
+    ID              reduce using rule 34 (declaration2 -> type2 ID COMMA ID SEMICOLON .)
+    LPAREN          reduce using rule 34 (declaration2 -> type2 ID COMMA ID SEMICOLON .)
+
+
+state 143
+
+    (44) ifelse4 -> ELSEIF LPAREN expr4 . RPAREN LBRACE statements4 RBRACE ifelse4
+    (50) expr4 -> expr4 . OPERATOR OPERATOR expr4
+    (51) expr4 -> expr4 . OPERATOR expr4
+
+    RPAREN          shift and go to state 149
+    OPERATOR        shift and go to state 33
+
+
+state 144
+
+    (45) ifelse4 -> ELSE LBRACE statements4 . RBRACE
+    (47) statements4 -> statements4 . statements4 SEMICOLON
+    (47) statements4 -> . statements4 statements4 SEMICOLON
+    (48) statements4 -> . expr4
+    (49) statements4 -> . empty
+    (50) expr4 -> . expr4 OPERATOR OPERATOR expr4
+    (51) expr4 -> . expr4 OPERATOR expr4
+    (52) expr4 -> . ID
+    (53) expr4 -> . NUMBER
+    (64) empty -> .
+
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    RBRACE          shift and go to state 150
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    SEMICOLON       reduce using rule 64 (empty -> .)
+
+  ! ID              [ reduce using rule 64 (empty -> .) ]
+  ! NUMBER          [ reduce using rule 64 (empty -> .) ]
+
+    statements4                    shift and go to state 68
+    expr4                          shift and go to state 47
+    empty                          shift and go to state 49
+
+state 145
+
+    (16) compound_statement1 -> LBRACE statements1 . RBRACE
+    (18) statements1 -> statements1 . statement1
+    (1) statement1 -> . for_loop1
+    (2) statement1 -> . ifstatement4
+    (3) statement1 -> . other_statement1
+    (4) statement1 -> . empty
+    (5) for_loop1 -> . FOR LPAREN assignment1 SEMICOLON condition1 SEMICOLON update1 RPAREN compound_statement1
+    (42) ifstatement4 -> . IF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4
+    (43) ifstatement4 -> . IF expr4 LBRACE statements4 RBRACE
+    (19) other_statement1 -> . ID OPERATOR expression1 SEMICOLON
+    (64) empty -> .
+
+  ! shift/reduce conflict for RBRACE resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+    RBRACE          shift and go to state 151
+    FOR             shift and go to state 13
+    IF              shift and go to state 11
+    ID              shift and go to state 10
+
+  ! RBRACE          [ reduce using rule 64 (empty -> .) ]
+  ! FOR             [ reduce using rule 64 (empty -> .) ]
+  ! IF              [ reduce using rule 64 (empty -> .) ]
+  ! ID              [ reduce using rule 64 (empty -> .) ]
+
+    statement1                     shift and go to state 152
+    for_loop1                      shift and go to state 6
+    ifstatement4                   shift and go to state 147
+    other_statement1               shift and go to state 7
+    empty                          shift and go to state 148
+
+state 146
+
+    (17) statements1 -> statement1 .
+
+    RBRACE          reduce using rule 17 (statements1 -> statement1 .)
+    FOR             reduce using rule 17 (statements1 -> statement1 .)
+    IF              reduce using rule 17 (statements1 -> statement1 .)
+    ID              reduce using rule 17 (statements1 -> statement1 .)
+
+
+state 147
+
+    (2) statement1 -> ifstatement4 .
+
+    RBRACE          reduce using rule 2 (statement1 -> ifstatement4 .)
+    FOR             reduce using rule 2 (statement1 -> ifstatement4 .)
+    IF              reduce using rule 2 (statement1 -> ifstatement4 .)
+    ID              reduce using rule 2 (statement1 -> ifstatement4 .)
+
+
+state 148
+
+    (4) statement1 -> empty .
+
+    RBRACE          reduce using rule 4 (statement1 -> empty .)
+    FOR             reduce using rule 4 (statement1 -> empty .)
+    IF              reduce using rule 4 (statement1 -> empty .)
+    ID              reduce using rule 4 (statement1 -> empty .)
+
+
+state 149
+
+    (44) ifelse4 -> ELSEIF LPAREN expr4 RPAREN . LBRACE statements4 RBRACE ifelse4
+
+    LBRACE          shift and go to state 153
+
+
+state 150
+
+    (45) ifelse4 -> ELSE LBRACE statements4 RBRACE .
+
+    $end            reduce using rule 45 (ifelse4 -> ELSE LBRACE statements4 RBRACE .)
+    RBRACE          reduce using rule 45 (ifelse4 -> ELSE LBRACE statements4 RBRACE .)
+    FOR             reduce using rule 45 (ifelse4 -> ELSE LBRACE statements4 RBRACE .)
+    IF              reduce using rule 45 (ifelse4 -> ELSE LBRACE statements4 RBRACE .)
+    ID              reduce using rule 45 (ifelse4 -> ELSE LBRACE statements4 RBRACE .)
+
+
+state 151
+
+    (16) compound_statement1 -> LBRACE statements1 RBRACE .
+
+    $end            reduce using rule 16 (compound_statement1 -> LBRACE statements1 RBRACE .)
+    RBRACE          reduce using rule 16 (compound_statement1 -> LBRACE statements1 RBRACE .)
+    FOR             reduce using rule 16 (compound_statement1 -> LBRACE statements1 RBRACE .)
+    IF              reduce using rule 16 (compound_statement1 -> LBRACE statements1 RBRACE .)
+    ID              reduce using rule 16 (compound_statement1 -> LBRACE statements1 RBRACE .)
+
+
+state 152
+
+    (18) statements1 -> statements1 statement1 .
+
+    RBRACE          reduce using rule 18 (statements1 -> statements1 statement1 .)
+    FOR             reduce using rule 18 (statements1 -> statements1 statement1 .)
+    IF              reduce using rule 18 (statements1 -> statements1 statement1 .)
+    ID              reduce using rule 18 (statements1 -> statements1 statement1 .)
+
+
+state 153
+
+    (44) ifelse4 -> ELSEIF LPAREN expr4 RPAREN LBRACE . statements4 RBRACE ifelse4
+    (47) statements4 -> . statements4 statements4 SEMICOLON
+    (48) statements4 -> . expr4
+    (49) statements4 -> . empty
+    (50) expr4 -> . expr4 OPERATOR OPERATOR expr4
+    (51) expr4 -> . expr4 OPERATOR expr4
+    (52) expr4 -> . ID
+    (53) expr4 -> . NUMBER
+    (64) empty -> .
+
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    RBRACE          reduce using rule 64 (empty -> .)
+    SEMICOLON       reduce using rule 64 (empty -> .)
+
+  ! ID              [ reduce using rule 64 (empty -> .) ]
+  ! NUMBER          [ reduce using rule 64 (empty -> .) ]
+
+    expr4                          shift and go to state 47
+    statements4                    shift and go to state 154
+    empty                          shift and go to state 49
+
+state 154
+
+    (44) ifelse4 -> ELSEIF LPAREN expr4 RPAREN LBRACE statements4 . RBRACE ifelse4
+    (47) statements4 -> statements4 . statements4 SEMICOLON
+    (47) statements4 -> . statements4 statements4 SEMICOLON
+    (48) statements4 -> . expr4
+    (49) statements4 -> . empty
+    (50) expr4 -> . expr4 OPERATOR OPERATOR expr4
+    (51) expr4 -> . expr4 OPERATOR expr4
+    (52) expr4 -> . ID
+    (53) expr4 -> . NUMBER
+    (64) empty -> .
+
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+    RBRACE          shift and go to state 155
+    ID              shift and go to state 20
+    NUMBER          shift and go to state 21
+    SEMICOLON       reduce using rule 64 (empty -> .)
+
+  ! ID              [ reduce using rule 64 (empty -> .) ]
+  ! NUMBER          [ reduce using rule 64 (empty -> .) ]
+
+    expr4                          shift and go to state 47
+    statements4                    shift and go to state 68
+    empty                          shift and go to state 49
+
+state 155
+
+    (44) ifelse4 -> ELSEIF LPAREN expr4 RPAREN LBRACE statements4 RBRACE . ifelse4
+    (44) ifelse4 -> . ELSEIF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4
+    (45) ifelse4 -> . ELSE LBRACE statements4 RBRACE
+    (46) ifelse4 -> . empty
+    (64) empty -> .
+
+    ELSEIF          shift and go to state 126
+    ELSE            shift and go to state 127
+    $end            reduce using rule 64 (empty -> .)
+    RBRACE          reduce using rule 64 (empty -> .)
+    FOR             reduce using rule 64 (empty -> .)
+    IF              reduce using rule 64 (empty -> .)
+    ID              reduce using rule 64 (empty -> .)
+
+    ifelse4                        shift and go to state 156
+    empty                          shift and go to state 128
+
+state 156
+
+    (44) ifelse4 -> ELSEIF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4 .
+
+    $end            reduce using rule 44 (ifelse4 -> ELSEIF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4 .)
+    RBRACE          reduce using rule 44 (ifelse4 -> ELSEIF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4 .)
+    FOR             reduce using rule 44 (ifelse4 -> ELSEIF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4 .)
+    IF              reduce using rule 44 (ifelse4 -> ELSEIF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4 .)
+    ID              reduce using rule 44 (ifelse4 -> ELSEIF LPAREN expr4 RPAREN LBRACE statements4 RBRACE ifelse4 .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ID in state 32 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 32 resolved as shift
+WARNING: shift/reduce conflict for ID in state 48 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 48 resolved as shift
+WARNING: shift/reduce conflict for OPERATOR in state 50 resolved as shift
+WARNING: shift/reduce conflict for OPERATOR in state 64 resolved as shift
+WARNING: shift/reduce conflict for ID in state 67 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 67 resolved as shift
+WARNING: shift/reduce conflict for SEMICOLON in state 68 resolved as shift
+WARNING: shift/reduce conflict for ID in state 68 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 68 resolved as shift
+WARNING: shift/reduce conflict for OPERATOR in state 70 resolved as shift
+WARNING: shift/reduce conflict for OPERATOR in state 88 resolved as shift
+WARNING: shift/reduce conflict for OPERATOR in state 91 resolved as shift
+WARNING: shift/reduce conflict for ID in state 92 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 92 resolved as shift
+WARNING: shift/reduce conflict for OPERATOR in state 122 resolved as shift
+WARNING: shift/reduce conflict for ID in state 136 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 136 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 139 resolved as shift
+WARNING: shift/reduce conflict for IF in state 139 resolved as shift
+WARNING: shift/reduce conflict for ID in state 139 resolved as shift
+WARNING: shift/reduce conflict for ID in state 144 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 144 resolved as shift
+WARNING: shift/reduce conflict for RBRACE in state 145 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 145 resolved as shift
+WARNING: shift/reduce conflict for IF in state 145 resolved as shift
+WARNING: shift/reduce conflict for ID in state 145 resolved as shift
+WARNING: shift/reduce conflict for ID in state 153 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 153 resolved as shift
+WARNING: shift/reduce conflict for ID in state 154 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 154 resolved as shift
+WARNING: reduce/reduce conflict in state 4 resolved using rule (statement1 -> ifstatement4)
+WARNING: rejected rule (initial -> ifstatement4) in state 4
+WARNING: reduce/reduce conflict in state 8 resolved using rule (statement1 -> empty)
+WARNING: rejected rule (function2 -> empty) in state 8
+WARNING: Rule (initial -> ifstatement4) is never reduced
